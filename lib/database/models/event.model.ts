@@ -29,8 +29,6 @@ const EventSchema = new Schema({
     url: { type: String },
     category: { type: Schema.Types.ObjectId, ref: "Category" },
     organizer: { type: Schema.Types.ObjectId, ref: "User" },
-}, {
-    bufferCommands: true
 })
 
 const Event = models.Event || model("Event", EventSchema);
