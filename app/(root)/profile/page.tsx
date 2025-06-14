@@ -9,12 +9,11 @@ import Link from 'next/link'
 import React from 'react'
 
 const ProfilePage = async ({ searchParams }: SearchParamProps) => {
-  const resolvedSearchParams = await searchParams; // Await searchParams
   const { sessionClaims } = await auth();
   const userId = sessionClaims?.userId as string;
 
-  const ordersPage = Number(resolvedSearchParams?.ordersPage) || 1; // Use resolved searchParams
-  const eventsPage = Number(resolvedSearchParams?.eventsPage) || 1; // Use resolved searchParams
+  const ordersPage = Number(searchParams?.ordersPage) || 1;
+  const eventsPage = Number(searchParams?.eventsPage) || 1;
 
   const orders = await getOrdersByUser({ userId, page: ordersPage });
 

@@ -9,16 +9,17 @@ export const connectToDatabase = async () => {
     return cached.conn;
   }
 
-  if (!MONGODB_URI)
+  if (!MONGODB_URI) {
     throw new Error(
       "Please define the MONGODB_URI environment variable inside .env.local"
     );
+  }
 
   cached.promise =
     cached.promise ||
     mongoose.connect(MONGODB_URI, {
       dbName: "iconnect",
-      bufferCommands: true, // Changed to true to allow buffering
+      bufferCommands: false,
     });
 
   cached.conn = await cached.promise;
